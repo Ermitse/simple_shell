@@ -2,7 +2,7 @@
 
 /**
 * test_path - checks whether path is valid
-* @path: tokenized path
+* @path: path of token
 * @command: user entered command
 *
 * Return: path appended with command on success
