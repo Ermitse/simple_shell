@@ -62,7 +62,6 @@ int shell_help(char **args)
 int shell_exit(char **args)
 {
 	(void)args;
-	exit(98);
 	return (0);
 }
 /**
