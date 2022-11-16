@@ -9,11 +9,11 @@
 int shell_launch(char **args, int flag)
 {
 	pid_t pid;
-
 	int status;
-
 	pid_t wpid;
+
 	pid = fork();
+
 	if (pid == 0)
 	{
 		if (execve(args[0], args, NULL) == -1)
