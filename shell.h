@@ -1,61 +1,87 @@
-#ifndef SHELL_H
-#define SHELL_H
+#ifndef SHELL_BASIC_H
 
-#include <stdarg.h>
+#define SHELL_BASIC_H
+
+
+
 #include <stdio.h>
+
 #include <stdlib.h>
+
 #include <string.h>
+
+#include <signal.h>
+
 #include <unistd.h>
-#include <sys/types.h>
-#include <sys/wait.h>
+
 #include <sys/stat.h>
-#include <time.h>
-#include <stdbool.h>
 
-/* environment variables */
+#include <sys/types.h>
+
+#include <sys/wait.h>
+
+#include <fcntl.h>
+
+#include <errno.h>
+
+
+
+/*  File prototypes  */
+
+void shell_loop(char **args);
+
+char *shell_read_line(void);
+
+char **shell_split_line(char *line);
+
+int shell_launch(char **args, int flag);
+
+int shell_execute(char **args);
+
+void _free_double_pointer(char **d_pointer);
+
+
+
+/* Functions for Built-in commands */
+
+int shell_cd(char **args);
+
+int shell_help(char **args);
+
+int shell_exit(char **args);
+
+int shell_env(char **environ);
+
+int shell_num_builtins(void);
+
+/* Environment variables and Function´s */
+
+char *_getenv(const char *name);
+
 extern char **environ;
-extern __sighandler_t signal(int __sig, __sighandler_t __handler);
 
-/* handle built ins */
-int checker(char **cmd, char *buf);
-void prompt_user(void);
-void handle_signal(int m);
-char **tokenizer(char *line);
-char *test_path(char **path, char *command);
-char *append_path(char *path, char *command);
-int handle_builtin(char **command, char *line);
-void exit_cmd(char **command, char *line);
 
-void print_env(void);
 
-/* string handlers */
+/* Functions for strings */
+
+int _strlen(char *string);
+
 int _strcmp(char *s1, char *s2);
-int _strlen(char *s);
+
 int _strncmp(char *s1, char *s2, int n);
-char *_strdup(char *s);
-char *_strchr(char *s, char c);
 
-void execution(char *cp, char **cmd);
-char *find_path(void);
+char *_strcat(char *dest, char *src);
 
-/* helper function for efficient free */
-void free_buffers(char **buf);
+char *_strcpy(char *dest, char *src);
 
-struct builtin
-{
-	char *env;
-	char *exit;
-} builtin;
+char *str_concat(char *s1, char *s2);
 
-struct info
-{
-	int final_exit;
-	int ln_count;
-} info;
+int _putchar(char c);
 
-struct flags
-{
-	bool interactive;
-} flags;
+void _puts(char *str);
 
-#endif /* SHELL_H */
+void *_realloc(void *ptr, unsigned int old_size, unsigned int new_size);
+
+
+
+#endif
