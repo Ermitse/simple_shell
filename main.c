@@ -12,5 +12,5 @@ int main(int argc, char **argv)
 	(void)argc;
 	shell_loop(argv);
 	/* Perform any shutdown/cleanup. */
-	return (EXIT_SUCCESS)
+	return (EXIT_SUCCESS);
 }
