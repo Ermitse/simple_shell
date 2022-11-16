@@ -62,7 +62,8 @@ int shell_help(char **args)
 int shell_exit(char **args)
 {
 	(void)args;
-	return (1);
+	exit(98);
+	return (0);
 }
 /**
  * shell_env - prints the environment
